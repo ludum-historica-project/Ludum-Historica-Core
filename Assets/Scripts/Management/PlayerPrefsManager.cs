@@ -49,7 +49,6 @@ public class PlayerPrefsManager : Manager
         foreach (var pair in objectsToSaveOnExit)
         {
             SaveObject(pair.Key, pair.Value);
-            Debug.Log("Saving object under key " + pair.Key);
         }
     }
 }
