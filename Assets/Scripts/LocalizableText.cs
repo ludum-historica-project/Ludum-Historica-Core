@@ -20,7 +20,7 @@ public class LocalizableText : MonoBehaviour
 
     private void OnEnable()
     {
-        RefreshText(Director.GetManager<LocalizationManager>().currentLanguage);
+        RefreshText(Director.GetManager<LocalizationManager>().CurrentLanguage);
         Director.GetManager<LocalizationManager>().OnLanguageUpdated += RefreshText;
     }
 
