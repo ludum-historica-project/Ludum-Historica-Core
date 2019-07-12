@@ -43,23 +43,13 @@ public class UIWindow : MonoBehaviour
         _animator = GetComponent<Animator>();
         if (isTopWindow && Director.GetManager<UIManager>()) Director.GetManager<UIManager>().AddTopWindow(this);
     }
-
-    private void OnEnable()
-    {
-        if (isTopWindow && Director.GetManager<UIManager>()) Director.GetManager<UIManager>().AddTopWindow(this);
-    }
-
-    private void OnDisable()
-    {
-        if (isTopWindow && Director.GetManager<UIManager>()) Director.GetManager<UIManager>().RemoveTopWindow(this);
-    }
-
     public void Open()
     {
         isOpen = true;
         interactable = true;
         _animator.SetBool("Open", true);
         OnWindowOpen.Raise();
+        if (isTopWindow && Director.GetManager<UIManager>()) Director.GetManager<UIManager>().AddTopWindow(this);
     }
 
     public void Close()
@@ -67,6 +57,7 @@ public class UIWindow : MonoBehaviour
         isOpen = false;
         _animator.SetBool("Open", false);
         OnWindowClose.Raise();
+        if (isTopWindow && Director.GetManager<UIManager>()) Director.GetManager<UIManager>().RemoveTopWindow(this);
     }
 
     public void UpdateWindow()

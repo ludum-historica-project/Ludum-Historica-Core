@@ -9,7 +9,7 @@ public static class Director
     public static void Initialize()
     {
         managers = new Dictionary<string, Manager>();
-        SceneManager.LoadScene("Managers", LoadSceneMode.Additive);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Managers", LoadSceneMode.Additive);
 
     }
 

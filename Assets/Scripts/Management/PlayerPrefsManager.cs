@@ -14,14 +14,14 @@ public class PlayerPrefsManager : Manager
     {
         PlayerPrefs.SetString(key, JsonUtility.ToJson(data));
     }
-    public T LoadObject<T>(string key)
+    public T LoadObject<T>(string key, T defaultValue = default(T))
     {
         if (PlayerPrefs.HasKey(key))
         {
             JsonUtility.FromJson<T>(PlayerPrefs.GetString(key));
         }
         Debug.LogWarning("Key " + key + " doesn't exist in the PlayerPrefs, returning null.");
-        return default(T);
+        return defaultValue;
     }
 
     public void LoadObjectAndOverwrite<T>(string key, T obj)

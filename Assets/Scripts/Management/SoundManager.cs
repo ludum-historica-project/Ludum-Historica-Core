@@ -14,7 +14,23 @@ public class SoundManager : Manager
 
     public Dictionary<SoundLibrary, List<AudioSource>> activeSources = new Dictionary<SoundLibrary, List<AudioSource>>();
 
+    public List<AudioMixerVariable> mixerVariablesInPlayerPrefs;
+
     List<AudioSource> _availableSources = new List<AudioSource>();
+
+    const string MIXER_VARIABLES_KEY = "MIXER_VARIABLES_{0}_{1}";
+
+    protected void Start()
+    {
+        foreach (var mixerVariable in mixerVariablesInPlayerPrefs)
+        {
+            string key = string.Format(MIXER_VARIABLES_KEY, mixerVariable.audioMixer.name.ToUpper(), mixerVariable.mixerProperty.ToUpper());
+            Director.GetManager<PlayerPrefsManager>().LoadObjectAndOverwrite(key, mixerVariable);
+            mixerVariable.SetMixerGroupProperty(mixerVariable.lastValue);
+            Director.GetManager<PlayerPrefsManager>().objectsToSaveOnExit[key] = mixerVariable;
+        }
+    }
+
 
     public void PlaySound(SoundLibrary soundLib, bool allowMultiple = true)
     {
