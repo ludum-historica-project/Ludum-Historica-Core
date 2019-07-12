@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonoStateMachine : MonoBehaviour
 {
-    public MonoState _currentState;
+    protected MonoState _currentState;
 
     public void ChangeState(MonoState newState)
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class MonoState : MonoBehaviour
+public class MonoState
 {
     public MonoStateEvent transitionIn;
     public MonoStateEvent update;
